@@ -6,18 +6,24 @@ interface LogoProps {
   size?: LogoSize;
 }
 
-const heightMap: Record<LogoSize, number> = { sm: 36, md: 56, lg: 90 };
+// Source PNG is 4500×4500 with ~60% content area.
+// Render larger so the visible logo mark is crisp and readable.
+const sizeMap: Record<LogoSize, { w: number; h: number }> = {
+  sm: { w: 130, h: 130 }, // nav
+  md: { w: 200, h: 200 }, // contacto
+  lg: { w: 320, h: 320 }, // portada hero
+};
 
 export default function Logo({ size = 'md' }: LogoProps) {
-  const height = heightMap[size];
-  // The logo image is square (1:1), so width = height
+  const { w, h } = sizeMap[size];
   return (
     <Image
       src="/logo-latamdigital.png"
       alt="Latam Digital"
-      width={height}
-      height={height}
+      width={w}
+      height={h}
       priority
+      quality={100}
       style={{ objectFit: 'contain' }}
     />
   );
