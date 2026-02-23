@@ -1,47 +1,162 @@
-import { PORTADA_BADGES } from '@/constants/data';
-import Logo from '@/components/Logo';
+import Image from 'next/image';
+import { COLORS, PORTADA_BADGES } from '@/constants/data';
 
 export default function Portada() {
   return (
-    <div className="relative min-h-[90vh] bg-brand-dark flex flex-col items-center justify-center px-6 md:px-12 py-16 overflow-hidden">
+    <div
+      style={{
+        minHeight: '90vh',
+        background: COLORS.DARK,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 48,
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
       {/* Geometric BG shapes */}
-      <div className="absolute -top-16 -right-16 w-80 h-80 md:w-[420px] md:h-[420px] bg-brand-purple/10 rotate-[20deg] [clip-path:polygon(50%_0%,0%_100%,100%_100%)]" />
-      <div className="absolute -bottom-10 -left-10 w-56 h-56 md:w-72 md:h-72 bg-brand-orange/10 rotate-[-15deg] [clip-path:polygon(50%_0%,0%_100%,100%_100%)]" />
+      <div
+        style={{
+          position: 'absolute',
+          top: -60,
+          right: -60,
+          width: 420,
+          height: 420,
+          background: COLORS.PURPLE,
+          opacity: 0.12,
+          transform: 'rotate(20deg)',
+          clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          bottom: -40,
+          left: -40,
+          width: 280,
+          height: 280,
+          background: COLORS.ORANGE,
+          opacity: 0.1,
+          transform: 'rotate(-15deg)',
+          clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
+        }}
+      />
 
-      <div className="relative z-10 flex flex-col items-center text-center max-w-3xl w-full">
-        <Logo size="lg" />
+      <div
+        style={{
+          textAlign: 'center',
+          maxWidth: 820,
+          position: 'relative',
+          zIndex: 2,
+        }}
+      >
+        <Image
+          src="/logo-latamdigital-portada.png"
+          alt="Latam Digital"
+          width={420}
+          height={420}
+          priority
+          quality={100}
+          style={{ objectFit: 'contain' }}
+        />
+        <div
+          style={{ width: 80, height: 3, background: COLORS.ORANGE, margin: '4px auto 32px' }}
+        />
 
-        <div className="w-20 h-0.5 bg-brand-orange my-7" />
-
-        <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-4">
+        <h1
+          style={{
+            fontSize: 48,
+            fontWeight: 700,
+            color: '#fff',
+            fontFamily: '"Trebuchet MS", sans-serif',
+            marginBottom: 16,
+            lineHeight: 1.2,
+          }}
+        >
           Transformación Digital
         </h1>
-        <h2 className="text-2xl md:text-3xl font-light text-brand-light mb-8">
+        <h2
+          style={{
+            fontSize: 30,
+            fontWeight: 400,
+            color: '#C8C6F0',
+            fontFamily: '"Trebuchet MS", sans-serif',
+            marginBottom: 32,
+          }}
+        >
           en Salud para Bolivia
         </h2>
 
-        <p className="text-brand-orange font-bold text-sm md:text-base tracking-widest uppercase mb-9">
+        <p
+          style={{
+            fontSize: 16,
+            color: COLORS.ORANGE,
+            fontWeight: 700,
+            fontFamily: '"Trebuchet MS", sans-serif',
+            marginBottom: 36,
+            letterSpacing: 1,
+            textTransform: 'uppercase',
+          }}
+        >
           Digitalización de Expedientes Médicos
         </p>
 
-        {/* Badge pills */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {PORTADA_BADGES.map((badge) => (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: 12,
+            flexWrap: 'wrap',
+            marginBottom: 44,
+          }}
+        >
+          {PORTADA_BADGES.map((t) => (
             <span
-              key={badge}
-              className="px-5 py-2 rounded-full text-sm font-medium text-white bg-brand-purple/40 border border-brand-purple/60 tracking-wide"
+              key={t}
+              style={{
+                background: 'rgba(75,74,138,0.4)',
+                border: `1px solid ${COLORS.PURPLE}`,
+                color: '#fff',
+                padding: '8px 20px',
+                borderRadius: 30,
+                fontSize: 13,
+                fontFamily: '"Trebuchet MS", sans-serif',
+              }}
             >
-              {badge}
+              {t}
             </span>
           ))}
         </div>
 
-        {/* Presentado a */}
-        <div className="w-full max-w-lg bg-white/5 border border-white/10 rounded-xl px-8 py-5">
-          <p className="text-brand-subtle text-xs mb-1.5 uppercase tracking-widest">
+        <div
+          style={{
+            background: 'rgba(255,255,255,0.05)',
+            border: '1px solid rgba(255,255,255,0.12)',
+            borderRadius: 12,
+            padding: '20px 32px',
+          }}
+        >
+          <p
+            style={{
+              color: '#9090BB',
+              fontSize: 13,
+              fontFamily: '"Trebuchet MS", sans-serif',
+              marginBottom: 6,
+            }}
+          >
             Presentado a:
           </p>
-          <p className="text-white text-lg font-bold leading-snug">
+          <p
+            style={{
+              color: '#fff',
+              fontSize: 18,
+              fontWeight: 700,
+              fontFamily: '"Trebuchet MS", sans-serif',
+              margin: 0,
+            }}
+          >
             Asamblea Legislativa Plurinacional de Bolivia
           </p>
         </div>
