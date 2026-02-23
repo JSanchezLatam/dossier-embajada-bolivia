@@ -1,76 +1,38 @@
-import { COLORS, CONTEXTO_CHALLENGES } from '@/constants/data';
+import { CONTEXTO_CHALLENGES } from '@/constants/data';
 import SectionHeader from '@/components/SectionHeader';
 
 export default function Contexto() {
   return (
-    <div style={{ padding: '56px 48px', background: COLORS.DARK, minHeight: '80vh' }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+    <section className="py-14 px-6 md:px-12 bg-brand-dark min-h-[80vh]">
+      <div className="max-w-screen-lg mx-auto">
         <SectionHeader
           title="El Desafío en Bolivia"
           subtitle="Una oportunidad histórica de transformación en salud"
           light
         />
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {CONTEXTO_CHALLENGES.map((c) => (
             <div
               key={c.num}
-              style={{
-                background: 'rgba(42,38,96,0.6)',
-                border: `1px solid ${COLORS.PURPLE}`,
-                borderRadius: 12,
-                display: 'flex',
-                overflow: 'hidden',
-              }}
+              className="flex overflow-hidden rounded-xl border border-brand-purple/40 bg-brand-purple/10 shadow-lg hover:shadow-xl hover:border-brand-purple/70 transition-all duration-200"
             >
-              <div
-                style={{
-                  background: COLORS.PURPLE,
-                  width: 56,
-                  flexShrink: 0,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <span
-                  style={{
-                    color: COLORS.ORANGE,
-                    fontSize: 18,
-                    fontWeight: 700,
-                    fontFamily: '"Trebuchet MS", sans-serif',
-                  }}
-                >
-                  {c.num}
-                </span>
+              {/* Number column */}
+              <div className="bg-brand-purple w-14 shrink-0 flex items-center justify-center">
+                <span className="text-brand-orange font-bold text-base">{c.num}</span>
               </div>
-              <div style={{ padding: '20px 20px' }}>
-                <h4
-                  style={{
-                    color: '#fff',
-                    fontSize: 13,
-                    fontWeight: 700,
-                    fontFamily: '"Trebuchet MS", sans-serif',
-                    marginBottom: 8,
-                  }}
-                >
-                  {c.title}
-                </h4>
-                <p
-                  style={{
-                    color: '#AAAACC',
-                    fontSize: 12,
-                    fontFamily: '"Trebuchet MS", sans-serif',
-                    lineHeight: 1.6,
-                    margin: 0,
-                  }}
-                >
-                  {c.desc}
-                </p>
+
+              {/* Content */}
+              <div className="flex-1 p-5">
+                <div className="flex items-center gap-2.5 mb-2">
+                  <c.Icon size={16} className="text-brand-orange shrink-0" />
+                  <h4 className="text-white text-sm font-bold leading-tight">{c.title}</h4>
+                </div>
+                <p className="text-brand-muted text-xs leading-relaxed">{c.desc}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,120 +1,44 @@
-import { COLORS, CONTACT_INFO } from '@/constants/data';
+import { CONTACT_INFO } from '@/constants/data';
 import Logo from '@/components/Logo';
 
 export default function Contacto() {
   return (
-    <div
-      style={{
-        minHeight: '80vh',
-        background: COLORS.DARK,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 48,
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
-      <div
-        style={{
-          position: 'absolute',
-          top: -80,
-          right: -80,
-          width: 400,
-          height: 400,
-          background: COLORS.PURPLE,
-          opacity: 0.1,
-          clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          bottom: -60,
-          left: -60,
-          width: 300,
-          height: 300,
-          background: COLORS.ORANGE,
-          opacity: 0.08,
-          clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-          transform: 'rotate(30deg)',
-        }}
-      />
+    <section className="relative min-h-[80vh] bg-brand-dark flex flex-col items-center justify-center px-6 md:px-12 py-16 overflow-hidden">
+      {/* BG shapes */}
+      <div className="absolute -top-20 -right-20 w-[400px] h-[400px] bg-brand-purple/10 [clip-path:polygon(50%_0%,0%_100%,100%_100%)]" />
+      <div className="absolute -bottom-16 -left-16 w-72 h-72 bg-brand-orange/8 [clip-path:polygon(50%_0%,0%_100%,100%_100%)] rotate-[30deg]" />
 
-      <div
-        style={{ textAlign: 'center', maxWidth: 700, position: 'relative', zIndex: 2 }}
-      >
+      <div className="relative z-10 flex flex-col items-center text-center max-w-2xl w-full">
         <Logo size="md" />
-        <div
-          style={{ width: 80, height: 3, background: COLORS.ORANGE, margin: '24px auto' }}
-        />
+        <div className="w-20 h-0.5 bg-brand-orange my-6" />
 
-        <h2
-          style={{
-            color: '#fff',
-            fontSize: 36,
-            fontWeight: 700,
-            fontFamily: '"Trebuchet MS", sans-serif',
-            marginBottom: 16,
-          }}
-        >
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
           Iniciemos una Conversación
         </h2>
-        <p
-          style={{
-            color: '#C8C6F0',
-            fontSize: 15,
-            lineHeight: 1.75,
-            fontFamily: '"Trebuchet MS", sans-serif',
-            marginBottom: 40,
-          }}
-        >
-          Estamos listos para explorar cómo podemos apoyar a la Asamblea Legislativa
-          Plurinacional de Bolivia en su proceso de transformación digital en salud — como
-          asesores expertos, con humildad y compromiso genuino.
+        <p className="text-brand-light/80 text-sm md:text-base leading-relaxed mb-10 max-w-lg">
+          Estamos listos para explorar cómo podemos apoyar a la Asamblea Legislativa Plurinacional
+          de Bolivia en su proceso de transformación digital en salud — como asesores expertos,
+          con humildad y compromiso genuino.
         </p>
 
-        <div
-          style={{
-            background: 'rgba(42,38,96,0.7)',
-            border: `1px solid ${COLORS.PURPLE}`,
-            borderRadius: 12,
-            padding: '28px 36px',
-            borderTop: `4px solid ${COLORS.ORANGE}`,
-          }}
-        >
-          <p
-            style={{
-              color: '#fff',
-              fontSize: 17,
-              fontWeight: 700,
-              fontFamily: '"Trebuchet MS", sans-serif',
-              marginBottom: 20,
-            }}
-          >
+        {/* Contact card */}
+        <div className="w-full bg-brand-purple/20 border border-brand-purple/50 border-t-4 border-t-brand-orange rounded-xl px-8 py-7 shadow-xl">
+          <p className="text-white text-lg font-bold mb-5">
             Johann Tello Meryk &nbsp;|&nbsp; Director — Latam Digital
           </p>
-          {CONTACT_INFO.map((c) => (
-            <p
-              key={c.text}
-              style={{
-                color: '#AAAACC',
-                fontSize: 13,
-                fontFamily: '"Trebuchet MS", sans-serif',
-                marginBottom: 10,
-                display: 'flex',
-                gap: 10,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <span>{c.icon}</span>
-              {c.text}
-            </p>
-          ))}
+          <div className="space-y-3">
+            {CONTACT_INFO.map((c) => (
+              <p
+                key={c.text}
+                className="flex items-center justify-center gap-3 text-brand-muted text-sm"
+              >
+                <c.Icon size={16} className="shrink-0 text-brand-subtle" />
+                {c.text}
+              </p>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

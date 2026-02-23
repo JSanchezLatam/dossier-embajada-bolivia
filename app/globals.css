@@ -1,12 +1,49 @@
 @import "tailwindcss";
 
-* {
+@theme {
+  /* ── Brand Colors ── */
+  --color-brand-purple: #4b4a8a;
+  --color-brand-orange: #e8621a;
+  --color-brand-dark: #1e1b3a;
+  --color-brand-surface: #f5f4fc;
+  --color-brand-border: #e0e0f0;
+  --color-brand-subtle: #7070aa;
+  --color-brand-muted: #aaaacc;
+  --color-brand-light: #c8c6f0;
+
+  /* ── Typography ── */
+  --font-trebuchet: "Trebuchet MS", Trebuchet, sans-serif;
+
+  /* ── Animations ── */
+  --animate-fade-in: fade-in 0.3s ease-in-out both;
+  --animate-spin-slow: spin 1s linear infinite;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html,
 body {
   height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Trebuchet MS", Trebuchet, sans-serif;
+  background-color: #f5f4fc;
 }
