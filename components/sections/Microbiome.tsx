@@ -1,61 +1,124 @@
-import { MICROBIOME_TAGS, MICROBIOME_POINTS } from '@/constants/data';
+import { COLORS, MICROBIOME_TAGS, MICROBIOME_POINTS } from '@/constants/data';
 import SectionHeader from '@/components/SectionHeader';
 
 export default function Microbiome() {
   return (
-    <section className="py-14 px-6 md:px-12 bg-brand-dark min-h-[80vh]">
-      <div className="max-w-screen-lg mx-auto">
-        {/* Header row */}
-        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-8">
+    <div style={{ padding: '56px 48px', background: COLORS.DARK, minHeight: '80vh' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+            marginBottom: 36,
+          }}
+        >
           <SectionHeader
             title="Microbiome Radar"
             subtitle="Innovación pionera en salud de precisión"
             light
           />
-          <span className="self-start shrink-0 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-brand-orange text-white text-xs font-bold tracking-wide shadow-md">
+          <span
+            style={{
+              background: COLORS.ORANGE,
+              color: '#fff',
+              padding: '6px 16px',
+              borderRadius: 20,
+              fontSize: 11,
+              fontWeight: 700,
+              fontFamily: '"Trebuchet MS", sans-serif',
+              flexShrink: 0,
+            }}
+          >
             🧬 INNOVACIÓN
           </span>
         </div>
 
-        {/* Description + tags */}
-        <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-5 mb-8">
-          <div className="bg-brand-purple/20 border border-brand-purple/40 rounded-xl p-6 shadow-md">
-            <p className="text-brand-light/90 text-sm leading-relaxed">
-              <strong className="text-white font-bold">Microbiome Radar</strong> es un producto
-              pionero sin precedentes en el mercado, en desarrollo como proyecto final de maestría,
-              que combina análisis del microbioma intestinal con inteligencia artificial para
-              ofrecer insights predictivos de salud personalizada.
+        <div
+          style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: 24, marginBottom: 24 }}
+        >
+          <div
+            style={{
+              background: 'rgba(42,38,96,0.7)',
+              border: `1px solid ${COLORS.PURPLE}`,
+              borderRadius: 12,
+              padding: 28,
+            }}
+          >
+            <p
+              style={{
+                color: '#D0CEEE',
+                fontSize: 14,
+                lineHeight: 1.75,
+                fontFamily: '"Trebuchet MS", sans-serif',
+                margin: 0,
+              }}
+            >
+              <strong style={{ color: '#fff' }}>Microbiome Radar</strong> es un producto pionero
+              sin precedentes en el mercado, en desarrollo como proyecto final de maestría, que
+              combina análisis del microbioma intestinal con inteligencia artificial para ofrecer
+              insights predictivos de salud personalizada.
             </p>
           </div>
-          <div className="flex flex-col gap-2.5">
-            {MICROBIOME_TAGS.map((tag) => (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {MICROBIOME_TAGS.map((f) => (
               <div
-                key={tag}
-                className="bg-brand-purple/30 border border-brand-purple/50 rounded-lg px-4 py-2.5 flex items-center gap-2"
+                key={f}
+                style={{
+                  background: 'rgba(75,74,138,0.4)',
+                  border: `1px solid ${COLORS.PURPLE}`,
+                  borderRadius: 8,
+                  padding: '10px 16px',
+                }}
               >
-                <span className="text-brand-orange text-xs">◆</span>
-                <span className="text-white text-xs font-medium">{tag}</span>
+                <span
+                  style={{ color: '#fff', fontSize: 12, fontFamily: '"Trebuchet MS", sans-serif' }}
+                >
+                  ◆&nbsp;&nbsp;{f}
+                </span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* 3-col point cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
           {MICROBIOME_POINTS.map((p) => (
             <div
               key={p.title}
-              className="bg-brand-dark/80 border border-brand-orange/40 border-t-4 border-t-brand-orange rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+              style={{
+                background: 'rgba(20,18,64,0.8)',
+                border: `1px solid ${p.accent}`,
+                borderRadius: 12,
+                padding: 24,
+                borderTop: `4px solid ${p.accent}`,
+              }}
             >
-              <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-brand-orange/10 mb-4">
-                <p.Icon size={20} className="text-brand-orange" />
-              </div>
-              <h4 className="text-white text-sm font-bold mb-3 leading-snug">{p.title}</h4>
-              <p className="text-brand-muted text-xs leading-relaxed">{p.desc}</p>
+              <h4
+                style={{
+                  color: '#fff',
+                  fontSize: 13,
+                  fontWeight: 700,
+                  fontFamily: '"Trebuchet MS", sans-serif',
+                  marginBottom: 12,
+                }}
+              >
+                {p.title}
+              </h4>
+              <p
+                style={{
+                  color: '#AAAACC',
+                  fontSize: 12,
+                  fontFamily: '"Trebuchet MS", sans-serif',
+                  lineHeight: 1.65,
+                  margin: 0,
+                }}
+              >
+                {p.desc}
+              </p>
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

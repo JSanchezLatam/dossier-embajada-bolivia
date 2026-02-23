@@ -55,10 +55,10 @@ export default function Portada() {
         <Image
           src="/logo-latamdigital-portada.png"
           alt="Latam Digital"
-          width={420}
+          width={520}
           height={420}
           priority
-          quality={100}
+          quality={75}
           style={{ objectFit: 'contain' }}
         />
         <div

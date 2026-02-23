@@ -23,7 +23,7 @@ export default function Logo({ size = 'md' }: LogoProps) {
       width={w}
       height={h}
       priority
-      quality={100}
+      quality={75}
       style={{ objectFit: 'contain' }}
     />
   );

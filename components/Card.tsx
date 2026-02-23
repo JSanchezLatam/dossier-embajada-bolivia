@@ -1,28 +1,29 @@
-import { ReactNode } from 'react';
-import type { AccentColor } from '@/types';
+import { CSSProperties, ReactNode } from 'react';
+import { COLORS } from '@/constants/data';
 
 interface CardProps {
   children: ReactNode;
-  accent?: AccentColor;
+  accent?: string;
   dark?: boolean;
-  className?: string;
+  style?: CSSProperties;
 }
 
-const borderTop: Record<AccentColor, string> = {
-  orange: 'border-t-brand-orange',
-  purple: 'border-t-brand-purple',
-};
-
-export default function Card({ children, accent = 'orange', dark = false, className = '' }: CardProps) {
+export default function Card({
+  children,
+  accent = COLORS.ORANGE,
+  dark = false,
+  style = {},
+}: CardProps) {
   return (
     <div
-      className={`
-        rounded-xl overflow-hidden shadow-lg border-t-4
-        transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5
-        ${borderTop[accent]}
-        ${dark ? 'bg-[#2A2660] border border-brand-purple/50' : 'bg-brand-surface border border-brand-border'}
-        ${className}
-      `}
+      style={{
+        background: dark ? '#2A2660' : '#F5F4FC',
+        border: `1px solid ${dark ? COLORS.PURPLE : '#E0E0F0'}`,
+        borderRadius: 12,
+        overflow: 'hidden',
+        borderTop: `4px solid ${accent}`,
+        ...style,
+      }}
     >
       {children}
     </div>

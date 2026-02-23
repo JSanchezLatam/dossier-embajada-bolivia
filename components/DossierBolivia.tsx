@@ -1,24 +1,21 @@
 'use client';
 
-import { lazy, Suspense, useState } from 'react';
-import { SECTIONS } from '@/constants/data';
-import type { SectionKey } from '@/types';
+import { useState } from 'react';
+import { SectionKey } from '@/constants/data';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import Portada from '@/components/sections/Portada';
+import Nosotros from '@/components/sections/Nosotros';
+import Reconocimientos from '@/components/sections/Reconocimientos';
+import Contexto from '@/components/sections/Contexto';
+import Propuesta from '@/components/sections/Propuesta';
+import Innovacion from '@/components/sections/Innovacion';
+import Microbiome from '@/components/sections/Microbiome';
+import Beneficios from '@/components/sections/Beneficios';
+import Colaboracion from '@/components/sections/Colaboracion';
+import Contacto from '@/components/sections/Contacto';
 
-// ─── Lazy-loaded sections ─────────────────────────────────────────────────────
-const Portada = lazy(() => import('./sections/Portada'));
-const Nosotros = lazy(() => import('./sections/Nosotros'));
-const Reconocimientos = lazy(() => import('./sections/Reconocimientos'));
-const Contexto = lazy(() => import('./sections/Contexto'));
-const Propuesta = lazy(() => import('./sections/Propuesta'));
-const Innovacion = lazy(() => import('./sections/Innovacion'));
-const Microbiome = lazy(() => import('./sections/Microbiome'));
-const Beneficios = lazy(() => import('./sections/Beneficios'));
-const Colaboracion = lazy(() => import('./sections/Colaboracion'));
-const Contacto = lazy(() => import('./sections/Contacto'));
-
-const SECTION_COMPONENTS = {
+const SECTION_COMPONENTS: Record<SectionKey, React.ComponentType> = {
   portada: Portada,
   nosotros: Nosotros,
   reconocimientos: Reconocimientos,
@@ -29,39 +26,25 @@ const SECTION_COMPONENTS = {
   beneficios: Beneficios,
   colaboracion: Colaboracion,
   contacto: Contacto,
-} satisfies Record<SectionKey, React.LazyExoticComponent<React.ComponentType>>;
+};
 
-// ─── Loading fallback ─────────────────────────────────────────────────────────
-function SectionFallback() {
-  return (
-    <div className="flex items-center justify-center py-32">
-      <div className="w-9 h-9 rounded-full border-4 border-brand-purple border-t-brand-orange animate-spin" />
-    </div>
-  );
-}
-
-// ─── Main component ───────────────────────────────────────────────────────────
 export default function DossierBolivia() {
   const [activeSection, setActiveSection] = useState<SectionKey>('portada');
 
-  function handleNavigate(key: SectionKey) {
-    setActiveSection(key);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  const ActiveSection = SECTION_COMPONENTS[activeSection];
+  const ActiveSection = SECTION_COMPONENTS[activeSection] ?? Portada;
 
   return (
-    <div className="min-h-screen bg-brand-surface">
-      <Nav activeSection={activeSection} onNavigate={handleNavigate} />
-
-      {/* key triggers re-mount → fade-in animation on every section change */}
-      <main key={activeSection} className="animate-fade-in">
-        <Suspense fallback={<SectionFallback />}>
-          <ActiveSection />
-        </Suspense>
+    <div
+      style={{
+        minHeight: '100vh',
+        background: '#F5F4FC',
+        fontFamily: '"Trebuchet MS", sans-serif',
+      }}
+    >
+      <Nav activeSection={activeSection} onNavigate={setActiveSection} />
+      <main>
+        <ActiveSection />
       </main>
-
       <Footer />
     </div>
   );

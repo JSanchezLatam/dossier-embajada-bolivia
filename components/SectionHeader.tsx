@@ -1,3 +1,5 @@
+import { COLORS } from '@/constants/data';
+
 interface SectionHeaderProps {
   title: string;
   subtitle?: string;
@@ -6,26 +8,38 @@ interface SectionHeaderProps {
 
 export default function SectionHeader({ title, subtitle, light = false }: SectionHeaderProps) {
   return (
-    <div
-      className={`mb-10 rounded-xl p-5 -mx-1 ${
-        light
-          ? 'bg-gradient-to-r from-brand-purple/20 to-transparent'
-          : 'bg-gradient-to-r from-brand-purple/5 to-transparent'
-      }`}
-    >
-      <div className="flex items-center gap-3 mb-1.5">
-        <div className="w-1.5 h-10 bg-gradient-to-b from-brand-orange to-brand-purple rounded-full shrink-0" />
+    <div style={{ marginBottom: 40 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 8 }}>
+        <div
+          style={{
+            width: 5,
+            height: 40,
+            background: COLORS.ORANGE,
+            borderRadius: 3,
+            flexShrink: 0,
+          }}
+        />
         <h2
-          className={`text-2xl md:text-3xl font-bold leading-tight ${
-            light ? 'text-white' : 'text-brand-dark'
-          }`}
+          style={{
+            fontSize: 32,
+            fontWeight: 700,
+            color: light ? '#fff' : COLORS.DARK,
+            fontFamily: '"Trebuchet MS", sans-serif',
+            margin: 0,
+          }}
         >
           {title}
         </h2>
       </div>
       {subtitle && (
         <p
-          className={`text-sm ml-5 ${light ? 'text-brand-muted' : 'text-brand-subtle'}`}
+          style={{
+            color: light ? '#AAAACC' : '#7070AA',
+            fontSize: 15,
+            fontFamily: '"Trebuchet MS", sans-serif',
+            marginLeft: 19,
+            marginTop: 0,
+          }}
         >
           {subtitle}
         </p>

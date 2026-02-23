@@ -1,48 +1,67 @@
-import { BENEFICIOS } from '@/constants/data';
+import { COLORS, BENEFICIOS } from '@/constants/data';
 import SectionHeader from '@/components/SectionHeader';
-
-const headerBg: Record<'orange' | 'purple', string> = {
-  orange: 'bg-brand-orange',
-  purple: 'bg-brand-purple',
-};
-const bulletColor: Record<'orange' | 'purple', string> = {
-  orange: 'text-brand-orange',
-  purple: 'text-brand-purple',
-};
 
 export default function Beneficios() {
   return (
-    <section className="py-14 px-6 md:px-12 max-w-screen-lg mx-auto">
+    <div style={{ padding: '56px 48px', maxWidth: 1100, margin: '0 auto' }}>
       <SectionHeader
         title="Valor para Bolivia"
         subtitle="Impacto real en el sistema de salud nacional"
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
         {BENEFICIOS.map((b) => (
           <div
             key={b.title}
-            className="rounded-xl overflow-hidden border border-brand-border shadow-lg hover:shadow-xl transition-shadow"
+            style={{
+              background: '#F5F4FC',
+              border: '1px solid #E0E0F0',
+              borderRadius: 12,
+              overflow: 'hidden',
+            }}
           >
-            {/* Colored header */}
-            <div className={`${headerBg[b.accent]} px-6 py-4 flex items-center gap-3`}>
-              <div className="bg-white/20 rounded-lg p-1.5">
-                <b.Icon size={20} className="text-white" />
-              </div>
-              <h4 className="text-white text-base font-bold">{b.title}</h4>
+            <div
+              style={{
+                background: b.accent,
+                padding: '16px 24px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 12,
+              }}
+            >
+              <span style={{ fontSize: 22 }}>{b.icon}</span>
+              <h4
+                style={{
+                  color: '#fff',
+                  fontSize: 15,
+                  fontWeight: 700,
+                  fontFamily: '"Trebuchet MS", sans-serif',
+                  margin: 0,
+                }}
+              >
+                {b.title}
+              </h4>
             </div>
-
-            {/* Items */}
-            <div className="bg-brand-surface px-6 py-5 space-y-3">
+            <div style={{ padding: '20px 24px' }}>
               {b.items.map((item) => (
-                <p key={item} className="flex items-start gap-2.5 text-sm text-brand-dark">
-                  <span className={`${bulletColor[b.accent]} shrink-0 mt-0.5 font-bold`}>◆</span>
-                  {item}
+                <p
+                  key={item}
+                  style={{
+                    color: COLORS.DARK,
+                    fontSize: 13,
+                    fontFamily: '"Trebuchet MS", sans-serif',
+                    marginBottom: 8,
+                    display: 'flex',
+                    gap: 8,
+                    alignItems: 'flex-start',
+                  }}
+                >
+                  <span style={{ color: b.accent, flexShrink: 0 }}>◆</span> {item}
                 </p>
               ))}
             </div>
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 }

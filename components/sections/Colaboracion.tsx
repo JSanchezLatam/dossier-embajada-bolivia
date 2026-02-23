@@ -1,59 +1,100 @@
-import { COLABORACION_STEPS } from '@/constants/data';
+import { COLORS, COLABORACION_STEPS } from '@/constants/data';
 import SectionHeader from '@/components/SectionHeader';
-
-const stepBg: Record<'orange' | 'purple', string> = {
-  orange: 'bg-brand-orange',
-  purple: 'bg-brand-purple',
-};
-const stepBorder: Record<'orange' | 'purple', string> = {
-  orange: 'border-brand-orange/50',
-  purple: 'border-brand-purple/50',
-};
 
 export default function Colaboracion() {
   return (
-    <section className="py-14 px-6 md:px-12 bg-brand-dark min-h-[80vh]">
-      <div className="max-w-screen-lg mx-auto">
+    <div style={{ padding: '56px 48px', background: COLORS.DARK, minHeight: '80vh' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <SectionHeader
           title="Nuestro Enfoque de Colaboración"
           subtitle="Respeto a la autonomía boliviana en cada paso del proceso"
           light
         />
 
-        {/* Highlight banner */}
-        <div className="bg-brand-purple rounded-xl px-6 py-5 mb-8 shadow-lg">
-          <p className="text-white text-sm leading-relaxed">
+        <div
+          style={{
+            background: COLORS.PURPLE,
+            borderRadius: 12,
+            padding: '20px 28px',
+            marginBottom: 36,
+          }}
+        >
+          <p
+            style={{
+              color: '#fff',
+              fontSize: 14,
+              lineHeight: 1.7,
+              fontFamily: '"Trebuchet MS", sans-serif',
+              margin: 0,
+            }}
+          >
             Somos conscientes de que Bolivia posee sus propias complejidades, contexto y
             necesidades. No llegamos con soluciones predefinidas — llegamos con conocimiento,
-            metodología y apertura para{' '}
-            <strong className="font-bold">construir juntos</strong>.
+            metodología y apertura para <strong>construir juntos</strong>.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {COLABORACION_STEPS.map((step) => (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+          {COLABORACION_STEPS.map((p) => (
             <div
-              key={step.num}
-              className={`bg-brand-purple/10 border ${stepBorder[step.accent]} rounded-xl p-6 text-center hover:bg-brand-purple/20 transition-colors shadow-md hover:shadow-lg`}
+              key={p.num}
+              style={{
+                background: 'rgba(42,38,96,0.6)',
+                border: `1px solid ${p.accent}`,
+                borderRadius: 12,
+                padding: 24,
+                textAlign: 'center',
+              }}
             >
-              {/* Circle with number */}
               <div
-                className={`w-13 h-13 rounded-full ${stepBg[step.accent]} flex items-center justify-center mx-auto mb-4 shadow-md`}
+                style={{
+                  width: 52,
+                  height: 52,
+                  borderRadius: '50%',
+                  background: p.accent,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 16px',
+                }}
               >
-                <span className="text-white text-xl font-bold">{step.num}</span>
+                <span
+                  style={{
+                    color: '#fff',
+                    fontSize: 22,
+                    fontWeight: 700,
+                    fontFamily: '"Trebuchet MS", sans-serif',
+                  }}
+                >
+                  {p.num}
+                </span>
               </div>
-
-              {/* Icon badge */}
-              <div className="flex justify-center mb-3">
-                <step.Icon size={18} className="text-brand-muted" />
-              </div>
-
-              <h4 className="text-white text-base font-bold mb-3">{step.title}</h4>
-              <p className="text-brand-muted text-xs leading-relaxed">{step.desc}</p>
+              <h4
+                style={{
+                  color: '#fff',
+                  fontSize: 15,
+                  fontWeight: 700,
+                  fontFamily: '"Trebuchet MS", sans-serif',
+                  marginBottom: 10,
+                }}
+              >
+                {p.title}
+              </h4>
+              <p
+                style={{
+                  color: '#AAAACC',
+                  fontSize: 12,
+                  fontFamily: '"Trebuchet MS", sans-serif',
+                  lineHeight: 1.6,
+                  margin: 0,
+                }}
+              >
+                {p.desc}
+              </p>
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

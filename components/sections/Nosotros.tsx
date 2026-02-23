@@ -1,78 +1,174 @@
-import { COMPANY_STATS, COMPANY_TIMELINE } from '@/constants/data';
+import { COLORS, COMPANY_STATS, COMPANY_TIMELINE } from '@/constants/data';
 import SectionHeader from '@/components/SectionHeader';
 import Card from '@/components/Card';
 
 export default function Nosotros() {
   return (
-    <section className="py-14 px-6 md:px-12 max-w-screen-lg mx-auto">
+    <div style={{ padding: '56px 48px', maxWidth: 1100, margin: '0 auto' }}>
       <SectionHeader
         title="¿Quiénes Somos?"
         subtitle="Una empresa de tecnología con raíces en Latinoamérica"
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, marginBottom: 32 }}>
         {/* Company description */}
-        <div className="bg-brand-dark rounded-xl p-8 border-t-4 border-brand-orange shadow-lg">
-          <h3 className="text-white text-xl font-bold mb-1">Latam Digital</h3>
-          <div className="w-14 h-0.5 bg-brand-orange mb-5" />
-          <p className="text-brand-light/80 text-sm leading-relaxed mb-4">
+        <div
+          style={{
+            background: COLORS.DARK,
+            borderRadius: 12,
+            padding: 36,
+            borderTop: `4px solid ${COLORS.ORANGE}`,
+          }}
+        >
+          <h3
+            style={{
+              color: '#fff',
+              fontSize: 22,
+              fontWeight: 700,
+              fontFamily: '"Trebuchet MS", sans-serif',
+              marginBottom: 6,
+            }}
+          >
+            Latam Digital
+          </h3>
+          <div style={{ width: 60, height: 3, background: COLORS.ORANGE, marginBottom: 18 }} />
+          <p
+            style={{
+              color: '#CCCCEE',
+              fontSize: 14,
+              lineHeight: 1.7,
+              fontFamily: '"Trebuchet MS", sans-serif',
+              marginBottom: 16,
+            }}
+          >
             Fundada en 2007, somos una empresa de consultoría en Tecnología e Innovación, Gestión
             de Servicios Digitales 360 e Innovación Digital Aplicada, con base en Panamá y
             proyección regional en Latinoamérica.
           </p>
-          <p className="text-brand-muted text-sm leading-relaxed italic mb-5">
+          <p
+            style={{
+              color: '#AAAACC',
+              fontSize: 13,
+              lineHeight: 1.7,
+              fontFamily: '"Trebuchet MS", sans-serif',
+              fontStyle: 'italic',
+              marginBottom: 20,
+            }}
+          >
             Nuestra misión es acercar a las empresas al futuro mediante tecnologías inteligentes
             que mejoran sus procesos y maximizan sus inversiones.
           </p>
-          <p className="text-brand-orange text-sm font-bold">
+          <p
+            style={{
+              color: COLORS.ORANGE,
+              fontSize: 13,
+              fontWeight: 700,
+              fontFamily: '"Trebuchet MS", sans-serif',
+              margin: 0,
+            }}
+          >
             &quot;Soluciones que te acercan al futuro&quot;
           </p>
         </div>
 
         {/* Stats grid */}
-        <div className="grid grid-cols-2 gap-4">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           {COMPANY_STATS.map((s) => (
-            <Card key={s.num} accent="orange">
-              <div className="p-6 text-center">
-                <p className="text-2xl font-bold text-brand-purple mb-2">{s.num}</p>
-                <p className="text-xs text-brand-subtle leading-tight">{s.label}</p>
+            <Card key={s.num} accent={COLORS.ORANGE}>
+              <div style={{ padding: '24px 16px', textAlign: 'center' }}>
+                <p
+                  style={{
+                    fontSize: 28,
+                    fontWeight: 700,
+                    color: COLORS.PURPLE,
+                    fontFamily: '"Trebuchet MS", sans-serif',
+                    marginBottom: 8,
+                  }}
+                >
+                  {s.num}
+                </p>
+                <p
+                  style={{
+                    fontSize: 11,
+                    color: '#7070AA',
+                    fontFamily: '"Trebuchet MS", sans-serif',
+                    margin: 0,
+                  }}
+                >
+                  {s.label}
+                </p>
               </div>
             </Card>
           ))}
         </div>
       </div>
 
-      {/* Vertical timeline */}
-      <div className="bg-brand-surface rounded-xl p-6 border-l-4 border-brand-purple shadow-md">
-        <h4 className="text-brand-dark text-sm font-bold mb-6 uppercase tracking-wider">
+      {/* Timeline */}
+      <div
+        style={{
+          background: '#F5F4FC',
+          borderRadius: 12,
+          padding: '24px 32px',
+          borderLeft: `5px solid ${COLORS.PURPLE}`,
+        }}
+      >
+        <h4
+          style={{
+            color: COLORS.DARK,
+            fontSize: 15,
+            fontWeight: 700,
+            fontFamily: '"Trebuchet MS", sans-serif',
+            marginBottom: 12,
+          }}
+        >
           Nuestra Evolución
         </h4>
-        <div className="relative pl-8">
-          {/* Vertical line */}
-          <div className="absolute left-3 top-1 bottom-1 w-0.5 bg-brand-border" />
-
-          {COMPANY_TIMELINE.map((item, i) => (
-            <div key={item.year} className="relative mb-5 last:mb-0">
-              {/* Timeline dot */}
-              <div
-                className={`absolute -left-5 top-2 w-4 h-4 rounded-full border-2 border-brand-surface shadow-sm ${
-                  i % 2 === 0 ? 'bg-brand-purple' : 'bg-brand-orange'
-                }`}
-              />
-              <div className="bg-white rounded-lg px-4 py-3 border border-brand-border shadow-sm hover:shadow-md transition-shadow">
-                <span
-                  className={`inline-block text-xs font-bold px-2.5 py-0.5 rounded-full text-white mb-1 ${
-                    i % 2 === 0 ? 'bg-brand-purple' : 'bg-brand-orange'
-                  }`}
+        <div style={{ display: 'flex', gap: 0, flexWrap: 'wrap' }}>
+          {COMPANY_TIMELINE.map((e, i, arr) => (
+            <div key={e.year} style={{ display: 'flex', alignItems: 'center' }}>
+              <div style={{ textAlign: 'center' }}>
+                <div
+                  style={{
+                    background: i % 2 === 0 ? COLORS.PURPLE : COLORS.ORANGE,
+                    color: '#fff',
+                    borderRadius: 20,
+                    padding: '4px 10px',
+                    fontSize: 11,
+                    fontWeight: 700,
+                    fontFamily: '"Trebuchet MS", sans-serif',
+                    marginBottom: 4,
+                  }}
                 >
-                  {item.year}
-                </span>
-                <p className="text-brand-dark text-sm font-semibold">{item.title}</p>
+                  {e.year}
+                </div>
+                <p
+                  style={{
+                    fontSize: 10,
+                    color: '#7070AA',
+                    fontFamily: '"Trebuchet MS", sans-serif',
+                    margin: 0,
+                    maxWidth: 70,
+                    textAlign: 'center',
+                  }}
+                >
+                  {e.title}
+                </p>
               </div>
+              {i < arr.length - 1 && (
+                <div
+                  style={{
+                    width: 24,
+                    height: 2,
+                    background: '#DDDDEE',
+                    margin: '0 4px',
+                    flexShrink: 0,
+                  }}
+                />
+              )}
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }
